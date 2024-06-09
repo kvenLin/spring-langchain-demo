@@ -1,0 +1,6 @@
+### 测试生成
+GET localhost:8081/test/generate
+
+### 测试生成20条数据
+GET http://localhost:8081/assistant/chat?message=帮我生成5条用户数据, 数据表是: user
+
