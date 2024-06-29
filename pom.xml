@@ -34,6 +34,11 @@
             <version>0.31.0</version>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>dev.langchain4j</groupId>-->
+<!--            <artifactId>langchain4j-ollama-spring-boot-starter</artifactId>-->
+<!--            <version>0.31.0</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-open-ai-spring-boot-starter</artifactId>
@@ -68,6 +73,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>2.0.50</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-experimental-sql</artifactId>
+            <version>0.31.0</version>
         </dependency>
     </dependencies>
 

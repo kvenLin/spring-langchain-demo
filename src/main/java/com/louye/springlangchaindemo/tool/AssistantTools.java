@@ -2,13 +2,13 @@ package com.louye.springlangchaindemo.tool;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
-import com.louye.springlangchaindemo.domain.Product;
 import com.louye.springlangchaindemo.domain.aidata.CartDataList;
 import com.louye.springlangchaindemo.domain.aidata.ProductDataList;
 import com.louye.springlangchaindemo.domain.aidata.UserDataList;
 import com.louye.springlangchaindemo.service.CartService;
 import com.louye.springlangchaindemo.service.ProductService;
 import com.louye.springlangchaindemo.service.UserService;
+import com.louye.springlangchaindemo.service.ai.DataBaseQueryService;
 import com.louye.springlangchaindemo.service.ai.Factory;
 import com.louye.springlangchaindemo.template.TableDataGeneratePrompt;
 import dev.langchain4j.agent.tool.P;
@@ -18,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalTime;
-import java.util.List;
 
 @Slf4j
 @Component
@@ -31,6 +30,8 @@ public class AssistantTools {
     private CartService cartService;
     @Resource
     private UserService userService;
+    @Resource
+    private DataBaseQueryService dataBaseQueryService;
 
     @Tool
     public String currentTime() {
@@ -41,6 +42,11 @@ public class AssistantTools {
     public String openSystem() {
         log.info("user need to open the system, do something here");
         return "success";
+    }
+
+    @Tool("when user want to query database data")
+    public String queryProductData(String query) {
+        return dataBaseQueryService.answer(query);
     }
 
     @Tool("when user need to generate test data for aim table")

@@ -1,0 +1,128 @@
+{
+  "model": "gpt-3.5-turbo",
+  "messages": [
+    {
+      "role": "system",
+      "content": "you are system assistant, you can help me to do some works in this system.\nif user want to generate table data, must input the table name and the number of rows.\n"
+    },
+    {
+      "role": "user",
+      "content": "你能帮我做什么"
+    },
+    {
+      "role": "assistant",
+      "content": "我可以帮助您打开系统、查询数据库数据以及生成测试数据。如果您有任何需要，可以告诉我您想要做的工作。"
+    },
+    {
+      "role": "user",
+      "content": "帮我查询一下数据,user表有多少条数据"
+    },
+    {
+      "role": "assistant",
+      "content": null,
+      "tool_calls": [
+        {
+          "id": "call_5MO4qXvzQBd0hDgUpLSqzw40",
+          "type": "function",
+          "function": {
+            "name": "queryProductData",
+            "arguments": "{\"query\":\"SELECT COUNT(*) FROM user\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_5MO4qXvzQBd0hDgUpLSqzw40",
+      "content": "java.lang.RuntimeException: dev.ai4j.openai4j.OpenAiHttpException: {\"error\":{\"message\":\"This model\u0027s maximum context length is 16385 tokens. However, your messages resulted in 22234 tokens. Please reduce the length of the messages. (request id: 20240610113718463280563XTnYB31f) (request id: 202406100337184311572952006178)\",\"type\":\"invalid_request_error\",\"param\":\"messages\",\"code\":\"context_length_exceeded\"}}"
+    },
+    {
+      "role": "assistant",
+      "content": null,
+      "tool_calls": [
+        {
+          "id": "call_UGFRZZrw576zew6mwYqbwCSb",
+          "type": "function",
+          "function": {
+            "name": "queryProductData",
+            "arguments": "{\"query\":\"SELECT COUNT(*) FROM user\"}"
+          }
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_UGFRZZrw576zew6mwYqbwCSb",
+      "content": "java.lang.RuntimeException: dev.ai4j.openai4j.OpenAiHttpException: {\"error\":{\"message\":\"This model\u0027s maximum context length is 16385 tokens. However, your messages resulted in 22234 tokens. Please reduce the length of the messages. (request id: 2024061003372570108257308811550)\",\"type\":\"invalid_request_error\",\"param\":\"messages\",\"code\":\"context_length_exceeded\"}}"
+    }
+  ],
+  "temperature": 0.7,
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "currentTime",
+        "description": "",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "openSystem",
+        "description": "when user need to open the system",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": []
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "queryProductData",
+        "description": "when user want to query database data",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "query"
+          ]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "generateTestData",
+        "description": "when user need to generate test data for aim table",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "num": {
+              "description": "number of rows to generate",
+              "type": "integer"
+            },
+            "tableName": {
+              "description": "tableName to generate test data",
+              "type": "string"
+            }
+          },
+          "required": [
+            "tableName",
+            "num"
+          ]
+        }
+      }
+    }
+  ]
+}

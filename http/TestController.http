@@ -4,3 +4,18 @@ GET localhost:8081/test/generate
 ### 测试生成20条数据
 GET http://localhost:8081/assistant/chat?message=帮我生成5条用户数据, 数据表是: user
 
+### 测试生成20条数据
+GET http://localhost:8081/assistant/chat?message=帮我生成20条用户数据, 数据表是: user
+
+### 测试数据库查询
+GET http://localhost:8081/test/queryData?message=帮我查询一下数据,user表有多少条数据
+
+### 测试SseEmitter接口
+GET http://localhost:8081/test/test/123?message=我叫什么名字
+
+### sse 测试
+GET http://localhost:8081/test/sse
+
+
+
+
